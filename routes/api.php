@@ -27,3 +27,10 @@ Route::post('article','ArticleController@store');
 Route::put('article','ArticleController@store');
 //Delete Article
 Route::delete('article/{id}','ArticleController@destroy');
+
+//Passport Authentication Routes
+Route::post('login','API\PassportController@login');
+Route::post('register','API\PassportController@register');
+Route::group(['middleware'=>'auth:api'],function (){
+    Route::post('get-details','API\PassportController@getDetails');
+});
